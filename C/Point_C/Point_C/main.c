@@ -115,5 +115,16 @@ int main()
     printf("size of struct ee = %d\nsize of struct ff = %d\nsize of struct gg = %d\nsize of struct jj = %d\n",
            sizeof(struct ee),sizeof(struct ff),sizeof(struct gg),sizeof(struct jj));
     exit(0);
+
+/*
+    size of s1 = 24
+	size of s2 = 16
+	size of t1 = 24
+	size of dd = 32
+	size of struct ee = 11
+	size of struct ff = 11
+	size of struct gg = 1
+	size of struct jj = 4
+*/
 }
 
