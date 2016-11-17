@@ -1,4 +1,3 @@
-@"
 
 10月30日：
 1、10月21日atom快捷方式复习：总结/Users/robert/Desktop/note/atom/atom_keybing.sh;
