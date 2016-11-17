@@ -1,5 +1,4 @@
 
-
 11月15日
 1、确定以后的学习方向还是以iOS为主，其他东西为辅的策略
 2、atom使用git的一些建议："http://blog.csdn.net/u010494080/article/details/51229211"
