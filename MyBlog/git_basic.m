@@ -6,7 +6,6 @@
 2、Git极其强大的分支管理
 
 一、git安装
-
 $ "git config --global user.name "Your Name""
 $ "git config --global user.email "email@example.com""
 "--global"参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个
@@ -23,7 +22,7 @@ $ "git config --global user.email "email@example.com""
 如果"git status"告诉你有文件被修改过，用"git diff"可以查看修改内容。
 
 HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令'git reset --hard commit_id'。
-穿梭前，用'git log'可以查看提交历史，以便确定要回退到哪个版本。'git log --graph  --pretty=oneline --abbrev -commit'
+穿梭前，用'git log'可以查看提交历史，以便确定要回退到哪个版本。'git log --graph --pretty=oneline --abbrev-commit'
 要重返未来，用'git reflog'查看命令历史，以便确定要回到未来的哪个版本。
 
 场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令'git checkout -- file'。
@@ -32,9 +31,9 @@ HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历�
 命令'git rm'用于删除一个文件
 
 四、远程仓库
-第1步：创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，
+创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，
 如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：
-$ ssh-keygen -t rsa -C "youremail@example.com"
+$ 'ssh-keygen -t rsa -C "youremail@example.com"'
 
 要关联一个远程库，使用命令'git remote add origin git@server-name:path/repo-name.git'；
 关联后，使用命令'git push -u origin master'第一次推送master分支的所有内容；
