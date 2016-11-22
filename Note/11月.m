@@ -1,4 +1,9 @@
 
+11月20
+1、git 熟练使用及教程总结,    'git_basic.m'
+2、pod 使用熟练及教程        'Pod/**'
+3、brew 使用熟练及教程总结    'brew.m'
+
 11月15日
 1、确定以后的学习方向还是以iOS为主，其他东西为辅的策略
 2、atom使用git的一些建议："http://blog.csdn.net/u010494080/article/details/51229211"
