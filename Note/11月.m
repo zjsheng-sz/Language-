@@ -3,6 +3,7 @@
 1、git 熟练使用及教程总结,    'git_basic.m'
 2、pod 使用熟练及教程        'Pod/**'
 3、brew 使用熟练及教程总结    'brew.m'
+4、terminal 常见使用技巧     'terminal.m'
 
 11月15日
 1、确定以后的学习方向还是以iOS为主，其他东西为辅的策略
