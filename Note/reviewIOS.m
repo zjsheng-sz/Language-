@@ -2,7 +2,7 @@
 复习方法：看理论，写demo，写总结, 下面复习内容交叉进行，iOS基础每天必须进行，其他4选一
 复习内容：
 1、语言与算法：swift文档再看2遍，OC基础看2遍，C语言复习2遍，算法与数据结构什么的再搞2遍
-2、扩展：pod, git, js, html, js, sqlite, instrument
+2、扩展：pod, git, js, html, sqlite, instrument
 3、iOS基础：写demo，写总结 ,具体内容见下面，以下内容各两到三遍
 4、题集：是对上面所学的总结
 5、项目研究
