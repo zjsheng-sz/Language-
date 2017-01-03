@@ -1,7 +1,21 @@
-"文件传输之外":http原理、post和get区别、UDP、IOS适配、FMDB、CoreData、内存泄漏、加密、textkit、coreGraphic
+12.24
+1、FMDB 的基本操作 及 回滚，升级等等: demo'iOS代码/UITestDemo_DB_SAFE_SIMPLE'
 
-"文件传输"、设计模式、分层架构、代码风格、如何做各种缓存系统、TCP 原理。
-UICollectionView、相册系统、文件系统、数据缓存、包结构、C语言组包、socket发送、多线程、
-加锁和死锁问题、socket接收、C语言拆包、断点续传技术点
+12.25
+1、http 请求原理
+  'http://www.cocoachina.com/ios/20140919/9691.html':nsurlconnection
+  'http://www.jianshu.com/p/fafc67475c73':nsurlSession
+  'http://www.cnblogs.com/kakaluote123/articles/5426923.html':connection 和 seesion的区别
+2、沙盒目录结构/文件管理:'iOS代码/FileManager'
+   'http://www.cnblogs.com/luckhao/p/5437896.html':沙盒目录结构
 
-1、swift重学习
+12.29
+1、相册和相机/collection/masonry:'iOS代码/photoConllectionMasonry'
+
+'http://blog.csdn.net/fuzongjian/article/details/50808414':相册
+
+
+心得：1、以后在公司白天上班时间只做复习
+     2、番茄好软件，改变从现在开始
+
+     

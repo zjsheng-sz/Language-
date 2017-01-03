@@ -7,8 +7,8 @@
 //
 
 #import "ViewController.h"
-#import "JSView.h"
 #import <Masonry.h>
+#import <Photos/Photos.h>
 
 @interface ViewController ()
 
@@ -20,11 +20,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-//    [self masonryPadding];
-    
-    JSView *jsView = [[JSView alloc] init];
-    jsView.frame = CGRectMake(0, 0, 300, 300);
-    [self.view addSubview:jsView];
     
 }
 
@@ -35,29 +30,54 @@
 }
 
 
-- (void)masonryPadding{
-    
-    UIView *view1 = [[UIView alloc] init];
-    view1.backgroundColor = [UIColor redColor];
-    UIView *superview = self.view;
-    UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);
-    [self.view addSubview:view1];
-    
-    //一
-    /*
-     [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
-     make.top.equalTo(superview.mas_top).with.offset(padding.top); //with is an optional semantic filler
-     make.left.equalTo(superview.mas_left).with.offset(padding.left);
-     make.bottom.equalTo(superview.mas_bottom).with.offset(-padding.bottom);
-     make.right.equalTo(superview.mas_right).with.offset(-padding.right);
-     }];
-     */
-    
-    //二
-    [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(superview).with.insets(padding);
-    }];
+- (void)getSmartPhoto{
 
+    //获取系统相册：
+    PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+    //获取用户自定义相册：
+    PHFetchResult *userAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil];
+
+    
+    //获取单个相册：（假设为collection）
+    [smartAlbums enumerateObjectsUsingBlock:^(PHAssetCollection * _Nonnull collection, NSUInteger idx, BOOL * _Nonnull stop) {
+        //
+        
+    }];
+    
+    [userAlbums enumerateObjectsUsingBlock:^(PHAssetCollection * _Nonnull collection, NSUInteger idx, BOOL * _Nonnull stop) {
+        //
+        
+    }];
+    
+}
+
+
+- (PHFetchResult *)fetchAssetsInAssetCollection:(PHAssetCollection *)assetCollection ascending:(BOOL)ascending
+{
+    PHFetchOptions *option = [[PHFetchOptions alloc] init];
+    option.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:ascending]];
+    PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:assetCollection options:option];
+    return result;
+}
+
+
+-(void)getImageByAsset:(PHAsset *)asset makeSize:(CGSize)size makeResizeMode:(PHImageRequestOptionsResizeMode)resizeMode completion:(void (^)(UIImage *))completion{
+    
+    PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
+    /**
+     resizeMode：对请求的图像怎样缩放。有三种选择：None，不缩放；Fast，尽快地提供接近或稍微大于要求的尺寸；Exact，精准提供要求的尺寸。
+     deliveryMode：图像质量。有三种值：Opportunistic，在速度与质量中均衡；HighQualityFormat，不管花费多长时间，提供高质量图像；FastFormat，以最快速度提供好的质量。
+     这个属性只有在 synchronous 为 true 时有效。
+     */
+    option.resizeMode = resizeMode;//控制照片尺寸
+    //option.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;//控制照片质量
+    //option.synchronous = YES;
+    option.networkAccessAllowed = YES;
+    //param：targetSize 即你想要的图片尺寸，若想要原尺寸则可输入PHImageManagerMaximumSize
+    [[PHCachingImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFit options:option resultHandler:^(UIImage * _Nullable image, NSDictionary * _Nullable info) {
+        completion(image);
+    }];
+    
 }
 
 

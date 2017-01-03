@@ -16,7 +16,6 @@
 		E13DF86B1E100D9D004ECB52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E13DF8691E100D9D004ECB52 /* LaunchScreen.storyboard */; };
 		E13DF8761E100D9D004ECB52 /* photoConllectionMasonryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E13DF8751E100D9D004ECB52 /* photoConllectionMasonryTests.m */; };
 		E13DF8811E100D9D004ECB52 /* photoConllectionMasonryUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E13DF8801E100D9D004ECB52 /* photoConllectionMasonryUITests.m */; };
-		E13DF8901E10159D004ECB52 /* JSView.m in Sources */ = {isa = PBXBuildFile; fileRef = E13DF88F1E10159D004ECB52 /* JSView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,8 +54,6 @@
 		E13DF87C1E100D9D004ECB52 /* photoConllectionMasonryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = photoConllectionMasonryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E13DF8801E100D9D004ECB52 /* photoConllectionMasonryUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = photoConllectionMasonryUITests.m; sourceTree = "<group>"; };
 		E13DF8821E100D9D004ECB52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E13DF88E1E10159D004ECB52 /* JSView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSView.h; sourceTree = "<group>"; };
-		E13DF88F1E10159D004ECB52 /* JSView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSView.m; sourceTree = "<group>"; };
 		E8E4179153789290813ED5EF /* libPods-photoConllectionMasonry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-photoConllectionMasonry.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -132,8 +129,6 @@
 				E13DF85F1E100D9D004ECB52 /* AppDelegate.m */,
 				E13DF8611E100D9D004ECB52 /* ViewController.h */,
 				E13DF8621E100D9D004ECB52 /* ViewController.m */,
-				E13DF88E1E10159D004ECB52 /* JSView.h */,
-				E13DF88F1E10159D004ECB52 /* JSView.m */,
 				E13DF8641E100D9D004ECB52 /* Main.storyboard */,
 				E13DF8671E100D9D004ECB52 /* Assets.xcassets */,
 				E13DF8691E100D9D004ECB52 /* LaunchScreen.storyboard */,
@@ -358,7 +353,6 @@
 				E13DF8631E100D9D004ECB52 /* ViewController.m in Sources */,
 				E13DF8601E100D9D004ECB52 /* AppDelegate.m in Sources */,
 				E13DF85D1E100D9D004ECB52 /* main.m in Sources */,
-				E13DF8901E10159D004ECB52 /* JSView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
