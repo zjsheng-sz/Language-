@@ -80,6 +80,8 @@
             }
         }
     }];
+    
+    
     /**
      *  用户创建的相册
      */
@@ -120,7 +122,8 @@
     [[PHCachingImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFit options:option resultHandler:^(UIImage * _Nullable image, NSDictionary * _Nullable info) {
         completion(image);
     }];
-
+    
+    
 }
 
 #pragma mark ----  取到所有的asset资源
@@ -132,7 +135,7 @@
     option.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:ascending]];
     
     PHFetchResult *result = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:option];
-    
+
     [result enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         PHAsset *asset = (PHAsset *)obj;
         [assets addObject:asset];
