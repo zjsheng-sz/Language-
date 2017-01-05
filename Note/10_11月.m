@@ -41,8 +41,6 @@
 2、连接mySql，操作数据库："http://www.jikexueyuan.com/course/457_2.html"
 3、php和html混合编程: "http://www.jikexueyuan.com/course/457_3.html?ss=1"
 
-
-
 10月30日：
 1、10月21日atom快捷方式复习：总结/Users/robert/Desktop/note/atom/atom_keybing.sh;
 2、10月18日2复习：http://www.jb51.net/article/76759.htm
