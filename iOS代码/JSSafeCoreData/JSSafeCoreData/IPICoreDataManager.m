@@ -11,10 +11,22 @@
 @interface IPICoreDataManager ()
 
 //@property (nonatomic, strong) NSPersistentContainer *persistentContainer;
+@property (strong)NSString *string;
 
 @end
 
 @implementation IPICoreDataManager
+
+- (NSString *)string{
+
+    return nil;
+}
+
+- (void)setString:(NSString *)string{
+    
+    
+}
+
 
 +(instancetype)shareDBManager{
     
