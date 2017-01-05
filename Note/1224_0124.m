@@ -10,12 +10,19 @@
    'http://www.cnblogs.com/luckhao/p/5437896.html':沙盒目录结构
 
 12.29
-1、相册和相机/collection/masonry:'iOS代码/photoConllectionMasonry'
+1、相册和相机/collection:'iOS代码/FZJPhotosFrameWork'
 
-'http://blog.csdn.net/fuzongjian/article/details/50808414':相册
-
+'http://blog.csdn.net/fuzongjian/article/details/50808414':相册Photos
+'http://www.cnblogs.com/ios8/p/iOS-UICollectionView.html':collection
 
 心得：1、以后在公司白天上班时间只做复习
      2、番茄好软件，改变从现在开始
 
-     
+1.04
+1、coredata
+'http://blog.csdn.net/ruglcc/article/details/50557344' coredata初级
+
+2、百度面试题目：
+'http://www.jianshu.com/p/4d7292741f53' :先看coreData部分，其他待慢慢研究
+
+1.05
