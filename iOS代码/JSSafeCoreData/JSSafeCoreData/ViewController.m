@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "IPICoreDataManager.h"
 
 @interface ViewController ()
 
@@ -17,6 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    [[IPICoreDataManager shareDBManager] createUserWithIdentifer:@"1" name:@"zhongJiaSheng"];
+    [[IPICoreDataManager shareDBManager] createUserWithIdentifer:@"2" name:@"luheqi"];
+    [[IPICoreDataManager shareDBManager] createUserWithIdentifer:@"3" name:@"liulianxi"];
+    
 }
 
 

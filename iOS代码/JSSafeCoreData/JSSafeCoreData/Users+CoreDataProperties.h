@@ -2,7 +2,7 @@
 //  Users+CoreDataProperties.h
 //  JSSafeCoreData
 //
-//  Created by ipi on 2017/1/4.
+//  Created by robert on 2017/1/5.
 //  Copyright © 2017年 zjs. All rights reserved.
 //  This file was automatically generated and should not be edited.
 //
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<Users *> *)fetchRequest;
 
-@property (nullable, nonatomic, copy) NSString *id;
+@property (nullable, nonatomic, copy) NSString *identifer;
 @property (nullable, nonatomic, copy) NSString *name;
 
 @end

@@ -9,8 +9,11 @@
 #import "IPICoreDataManager.h"
 
 @interface IPICoreDataManager ()
-
-//@property (nonatomic, strong) NSPersistentContainer *persistentContainer;
+    
+@property (nonatomic,strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic,strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic,strong) NSManagedObjectModel *managedObjectModel;
+    
 
 @end
 
@@ -27,50 +30,102 @@
     
     return _dbManager;
 }
+    
+#pragma mark - Initializing the Core Data Stack
+    
+- (NSManagedObjectModel *)managedObjectModel{
 
-#pragma mark - Core Data stack
-
-@synthesize persistentContainer = _persistentContainer;
-
-- (NSPersistentContainer *)persistentContainer {
-    // The persistent container for the application. This implementation creates and returns a container, having loaded the store for the application to it.
-    @synchronized (self) {
-        if (_persistentContainer == nil) {
-            _persistentContainer = [[NSPersistentContainer alloc] initWithName:@"JSSafeCoreData"];
-            [_persistentContainer loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription *storeDescription, NSError *error) {
-                if (error != nil) {
-                    // Replace this implementation with code to handle the error appropriately.
-                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    
-                    /*
-                     Typical reasons for an error here include:
-                     * The parent directory does not exist, cannot be created, or disallows writing.
-                     * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                     * The device is out of space.
-                     * The store could not be migrated to the current model version.
-                     Check the error message to determine what the actual problem was.
-                     */
-                    NSLog(@"Unresolved error %@, %@", error, error.userInfo);
-                    abort();
-                }
-            }];
-        }
+    if (_managedObjectModel) {
+        return _managedObjectModel;
     }
     
-    return _persistentContainer;
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"JSSafeCoreData" withExtension:@"momd"];
+    NSManagedObjectModel *mom = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    NSAssert(mom != nil, @"Error initializing Managed Object Model");
+    
+    return mom;
 }
+    
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator{
 
-#pragma mark - Core Data Saving support
+    if (_persistentStoreCoordinator) {
+        return _persistentStoreCoordinator;
+    }
+    
+    NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
 
-- (void)saveContext {
-    NSManagedObjectContext *context = self.persistentContainer.viewContext;
     NSError *error = nil;
-    if ([context hasChanges] && ![context save:&error]) {
+    NSPersistentStore *store = [psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:[self dbPath] options:nil error:&error];
+    NSAssert(store != nil, @"Error initializing PSC: %@\n%@", [error localizedDescription], [error userInfo]);
+    
+    return psc;
+}
+    
+- (NSManagedObjectContext *)managedObjectContext{
+
+    if (_managedObjectContext) {
+        return _managedObjectContext;
+    }
+    
+    NSManagedObjectContext *moc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    [moc setPersistentStoreCoordinator:self.persistentStoreCoordinator];
+    
+    return nil;
+}
+    
+    
+- (NSURL *)dbPath{
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *documentsURL = [[fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSURL *storeURL = [documentsURL URLByAppendingPathComponent:@"DataModel.sqlite"];
+//    NSMutableString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] mutableCopy];
+//    [path stringByAppendingPathComponent:@"JSSafeCoreData.sqlite"];
+//    return [NSURL URLWithString:path];
+    return storeURL;
+}
+    
+- (void)saveContext {
+
+    NSError *error = nil;
+    if ([self.managedObjectContext hasChanges] && ![self.managedObjectContext save:&error]) {
         // Replace this implementation with code to handle the error appropriately.
+        
+        NSError *error;
+        BOOL result = [self.managedObjectContext save:&error];
+        
+        NSAssert(result, error.localizedDescription);
+        
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
         NSLog(@"Unresolved error %@, %@", error, error.userInfo);
         abort();
     }
 }
 
+#pragma mark - Wishes
+
+- (void)createUserWithIdentifer:(NSString *)identifer name:(NSString *)name{
+    
+    Users *aUser = [NSEntityDescription insertNewObjectForEntityForName:@"Users" inManagedObjectContext:self.managedObjectContext];
+    aUser.identifer = identifer;
+    aUser.name = name;
+    
+    [self saveContext];
+}
+
+    
+-(NSArray<Users *> *)fetchUserByPredicate:(NSPredicate *)predicate{
+    
+    NSError *error = nil;
+    NSArray *result = [self.managedObjectContext executeFetchRequest:[Users fetchRequest] error:&error];
+    
+    if (!result) {
+        NSLog(@"Error fetching Employee objects: %@\n%@", [error localizedDescription], [error userInfo]);
+        abort();
+    }
+    
+    return result;
+}
+
+    
 @end

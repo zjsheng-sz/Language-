@@ -1,14 +1,14 @@
 //
-//  Wishes+CoreDataClass.m
+//  Users+CoreDataClass.m
 //  JSSafeCoreData
 //
-//  Created by ipi on 2017/1/4.
+//  Created by robert on 2017/1/5.
 //  Copyright © 2017年 zjs. All rights reserved.
 //  This file was automatically generated and should not be edited.
 //
 
-#import "Wishes+CoreDataClass.h"
+#import "Users+CoreDataClass.h"
 
-@implementation Wishes
+@implementation Users
 
 @end
