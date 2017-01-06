@@ -5,5 +5,5 @@ git add .;
 git commit -m"updata";
 
 if [[ $1 == push ]]; then
-  git push origin master;
+  git push origin master; #push to github
 fi
