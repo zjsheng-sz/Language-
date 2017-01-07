@@ -5,8 +5,7 @@
 ## Build generated
 build/
 DerivedData/
-Gitnormal.sh
-Book/
+
 
 ## Various settings
 *.pbxuser
