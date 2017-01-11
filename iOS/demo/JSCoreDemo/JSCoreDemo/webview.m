@@ -22,9 +22,9 @@
 -(id)initWithFrame:(CGRect)frame
 {
     self=[super initWithFrame:frame];
-    
+
     if( self ){
-        
+
         self.webview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 310, self.bounds.size.width, 300)];
         self.webview.backgroundColor=[UIColor lightGrayColor];
         NSString *htmlPath=[[NSBundle mainBundle] resourcePath];
@@ -32,27 +32,27 @@
         NSURL *localURL=[[NSURL alloc]initFileURLWithPath:htmlPath];
         [self.webview loadRequest:[NSURLRequest requestWithURL:localURL]];
         [self addSubview:self.webview];
-        
-        
+
+
         JSContext *context = [self.webview valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
         context[@"jakilllog"] = ^() {
-            
+
             NSLog(@"+++++++Begin Log+++++++");
             NSArray *args = [JSContext currentArguments];
-            
+
             for (JSValue *jsVal in args) {
                 NSLog(@"%@", jsVal);
             }
-            
+
             JSValue *this = [JSContext currentThis];
             NSLog(@"this: %@",this);
             NSLog(@"-------End Log-------");
-            
+
         };
-        
-        
-    }  
-    return self;  
+
+
+    }
+    return self;
 }
 
 @end
