@@ -12,7 +12,7 @@
 * cmd + f	搜索 当前文件
 * cmd + shift + f	搜索 目录
 * __cmd + shift + r	搜索 tag 前提是安装ctags (brew install ctags)且生成tags (ctags -R src/)__
-* alt + cmd + [	收起 所在代码块
+* alt + cmd + [收起 所在代码块
 * alt + cmd + ]	展开 所在代码块
 * alt + cmd + shift + [	收起 当前所有代码块
 * alt + cmd + shift + ]	展开 当前所有代码块
