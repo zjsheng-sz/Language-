@@ -95,4 +95,3 @@ then
 else
 	echo"文件不可读"
 fi
-
