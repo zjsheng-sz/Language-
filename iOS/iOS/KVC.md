@@ -3,6 +3,7 @@
 
 * [文档](https://developer.apple.com/library/prerelease/content/documentation/Cocoa/Conceptual/KeyValueCoding/index.html#//apple_ref/doc/uid/10000107i)
 
+* [KVO](http://blog.csdn.net/zyq522376829/article/details/52402735)
 
 ##访问对象属性
 
