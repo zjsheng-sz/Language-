@@ -1,5 +1,8 @@
 #ObjectC文档
 
+* [文档](https://developer.apple.com/library/prerelease/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011210)
+
+
 [Defining Classes](#Defining Classes)
 [Objects Send and Receive Messages](#Objects Send and Receive Messages)
 
@@ -40,7 +43,7 @@ As mentioned earlier, you need to use a pointer to keep track of an object in me
 
 When dealing with objects, the == operator is used to test whether two separate pointers are pointing to the same object:
 
-```objectC
+```objc
 
   if (firstPerson == secondPerson) {
        // firstPerson is the same object as secondPerson
@@ -50,7 +53,7 @@ When dealing with objects, the == operator is used to test whether two separate 
 
 If you need to test whether two objects represent the same data, you need to call a method like isEqual:, available from NSObject:
 
-```objectC
+```objc
 
     if ([firstPerson isEqual:secondPerson]) {
         // firstPerson is identical to secondPerson
@@ -62,14 +65,14 @@ If you need to test whether two objects represent the same data, you need to cal
 
 It’s always a good idea to initialize scalar variables at the time you declare them, otherwise their initial values will contain garbage from the previous stack contents:
 
-```objectC
+```objc
   BOOL success = NO;
   int magicNumber = 42;
 
 ```
 This isn’t necessary for object pointers, because the compiler will automatically set the variable to nil if you don’t specify any other initial value:
 
-```objectC
+```objc
 XYZPerson *somePerson;
   // somePerson is automatically set to nil
 
