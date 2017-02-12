@@ -13,7 +13,7 @@
 #import "FZJBigPhotoController.h"
 
 
-@interface FZJViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface FZJViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UILabel *lable;
 @property (weak, nonatomic) IBOutlet UITextField *PhotoNumberText;
 @property (weak, nonatomic) IBOutlet UIButton *addBtn;
