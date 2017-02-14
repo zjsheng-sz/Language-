@@ -41,6 +41,7 @@
   HTTP、WebSocket 等应用层协议，都是基于 TCP 协议来传输数据的。我们可以把这些高级协议理解成对 TCP 的封装
 
   既然大家都使用 TCP 协议，那么大家的连接和断开，都要遵循 TCP 协议中的[三次握手和四次握手](http://blog.csdn.net/whuslei/article/details/6667471) ，只是在连接之后发送的内容不同，或者是断开的时间不同。
+  注：[syn和ack的理解](http://blog.csdn.net/u014507230/article/details/45310847)
 
   对于 WebSocket 来说，它必须依赖 HTTP 协议进行一次握手 ，握手成功后，数据就直接从 TCP 通道传输，与 HTTP 无关了。
 

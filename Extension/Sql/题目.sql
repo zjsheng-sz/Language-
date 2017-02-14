@@ -96,7 +96,7 @@ mysql> select ename,job from emp where job like '%man%' and sal > 2000;
 
 mysql> select * from emp where ename like '%l%l%' and deptno = '30' or empno = '7782';
 
-25.显示出姓名中第三个字母为”A"的员工姓名。此题不只一种解决方式。
+25.显示出姓名中第三个字母为'A'的员工姓名。此题不只一种解决方式
 
 mysql> select ename from emp where ename like '__a%';
 
@@ -139,15 +139,17 @@ SELECT  ename, sal, (sal * 13 + 10000 + ifnull(comm,0)) AS annual_salary FROM em
 
 SELECT emp.ename, dept.loc  FROM emp INNER JOIN dept WHERE emp.deptno = dept.deptno AND dept.loc = 'NEW YORK';
 
+
+
 31.显示员工信息包括部门名称，员工的姓名，要求所有部门都显示出来，包含没有员工的部门
 
 SELECT emp.ename, dept.dname FROM  emp LEFT JOIN dept ON  emp.deptno = dept.deptno;
 
 32.显示员工”SMITH”的姓名，部门名称
 
-SELECT  emp.ename, dept.dname FROM  emp LEFT JOIN  dept ON emp.deptno = dept.deptno WHERE  emp.ename = ‘smith';
+SELECT  emp.ename, dept.dname FROM  emp LEFT JOIN  dept ON emp.deptno = dept.deptno WHERE  emp.ename = 'smith';
 
-33.显示员工”KING"和"FORD"管理的员工姓名及其经理姓名
+33.显示员工'KING'和'FORD'管理的员工姓名及其经理姓名
 
 SELECT t1.ename staff,t2.ename self,t3.ename manager
 FROM  (emp t1 LEFT JOIN emp t2 ON t1.mgr = t2.empno) LEFT JOIN emp t3 ON t2.mgr = t3.empno
@@ -173,7 +175,7 @@ SELECT count(*) FROM emp INNER JOIN dept ON emp.deptno = dept.deptno WHERE dept.
 
 37.显示出平均工资大于2000的部门名称及平均工资
 
-SELECT  avg(sal) FROM emp INNER JOIN dept ON emp.deptno = dept.deptno GROUP BY dept.deptno HAVING avg(sal) > 2000;
+SELECT  dept.dname, avg(sal) FROM emp INNER JOIN dept ON emp.deptno = dept.deptno GROUP BY dept.deptno HAVING avg(sal) > 2000;
 
 
 38.显示每个部门每种工作平均工资大于2500的部门及工作
@@ -184,7 +186,7 @@ GROUP BY emp.deptno,emp.job HAVING avg(sal) > 2500;
 ;
 
 
-39.显示出工作名称中包含”MAN"，并且平均工资大于1000的工作名称及平均工资
+39.显示出工作名称中包含"MAN"，并且平均工资大于1000的工作名称及平均工资
 
 SELECT emp.job, avg(sal)
 FROM emp GROUP BY emp.job
@@ -209,7 +211,7 @@ SELECT  t1.ename AS emp_name, t1.sal AS emp_salary
 FROM emp t1
 WHERE t1.deptno = (SELECT t2.deptno FROM emp t2 WHERE t2.empno = 7369);
 
-44.显示出和姓名中包含”W"的员工相同部门的员工姓名
+44.显示出和姓名中包含"W"的员工相同部门的员工姓名
 
 SELECT t1.ename, t1.deptno
 
@@ -233,7 +235,7 @@ FROM emp t1
 WHERE t1.sal > (SELECT avg(t2.sal) FROM emp t2 GROUP BY t2.deptno HAVING t1.deptno = t2.deptno);
 
 
-47.显示员工”KING"所管理的员工姓名
+47.显示员工"KING"所管理的员工姓名
 ELECT t1.ename AS self_name, t2.ename AS staff_name
 FROM emp t1 INNER JOIN emp t2 ON t2.mgr = t1.empno
 WHERE t1.ename = 'king';

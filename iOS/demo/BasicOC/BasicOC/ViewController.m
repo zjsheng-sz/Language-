@@ -7,11 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "basicOC-swift.h"
 
 typedef struct {
     int i;
     float f;
 } MyIntegerFloatStruct;
+
 
 
 @interface ViewController ()
@@ -24,6 +26,8 @@ typedef struct {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self createAvalue];
+    
+    mySwiftObject *swiftObject = @"haha";//
     
 }
     

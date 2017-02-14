@@ -15,6 +15,7 @@
 		E11907D01E1D277800A8829F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11907CE1E1D277800A8829F /* LaunchScreen.storyboard */; };
 		E11907DB1E1D277800A8829F /* BasicOCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E11907DA1E1D277800A8829F /* BasicOCTests.m */; };
 		E11907E61E1D277800A8829F /* BasicOCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E11907E51E1D277800A8829F /* BasicOCUITests.m */; };
+		E1D165FA1E535A410091B85D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D165F91E535A410091B85D /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		E11907E11E1D277800A8829F /* BasicOCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasicOCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E11907E51E1D277800A8829F /* BasicOCUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicOCUITests.m; sourceTree = "<group>"; };
 		E11907E71E1D277800A8829F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1D165F81E535A410091B85D /* BasicOC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BasicOC-Bridging-Header.h"; sourceTree = "<group>"; };
+		E1D165F91E535A410091B85D /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,11 +108,13 @@
 				E11907C41E1D277800A8829F /* AppDelegate.m */,
 				E11907C61E1D277800A8829F /* ViewController.h */,
 				E11907C71E1D277800A8829F /* ViewController.m */,
+				E1D165F91E535A410091B85D /* File.swift */,
 				E11907C91E1D277800A8829F /* Main.storyboard */,
 				E11907CC1E1D277800A8829F /* Assets.xcassets */,
 				E11907CE1E1D277800A8829F /* LaunchScreen.storyboard */,
 				E11907D11E1D277800A8829F /* Info.plist */,
 				E11907C01E1D277800A8829F /* Supporting Files */,
+				E1D165F81E535A410091B85D /* BasicOC-Bridging-Header.h */,
 			);
 			path = BasicOC;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 					E11907BC1E1D277800A8829F = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 5GYNH53HV7;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					E11907D51E1D277800A8829F = {
@@ -277,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E11907C81E1D277800A8829F /* ViewController.m in Sources */,
+				E1D165FA1E535A410091B85D /* File.swift in Sources */,
 				E11907C51E1D277800A8829F /* AppDelegate.m in Sources */,
 				E11907C21E1D277800A8829F /* main.m in Sources */,
 			);
@@ -425,11 +432,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 5GYNH53HV7;
 				INFOPLIST_FILE = BasicOC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BasicOC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BasicOC/BasicOC-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -437,17 +448,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 5GYNH53HV7;
 				INFOPLIST_FILE = BasicOC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BasicOC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BasicOC/BasicOC-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		E11907EE1E1D277800A8829F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 5GYNH53HV7;
 				INFOPLIST_FILE = BasicOCTests/Info.plist;
@@ -461,6 +476,7 @@
 		E11907EF1E1D277800A8829F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 5GYNH53HV7;
 				INFOPLIST_FILE = BasicOCTests/Info.plist;
@@ -474,6 +490,7 @@
 		E11907F11E1D277800A8829F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 5GYNH53HV7;
 				INFOPLIST_FILE = BasicOCUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -486,6 +503,7 @@
 		E11907F21E1D277800A8829F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 5GYNH53HV7;
 				INFOPLIST_FILE = BasicOCUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -514,6 +532,7 @@
 				E11907EC1E1D277800A8829F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E11907ED1E1D277800A8829F /* Build configuration list for PBXNativeTarget "BasicOCTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +541,7 @@
 				E11907EF1E1D277800A8829F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E11907F01E1D277800A8829F /* Build configuration list for PBXNativeTarget "BasicOCUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +550,7 @@
 				E11907F21E1D277800A8829F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
