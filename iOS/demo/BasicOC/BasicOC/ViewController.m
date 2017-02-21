@@ -18,6 +18,8 @@ typedef struct {
 
 @interface ViewController ()
 
+@property(nonatomic, strong) UITextView *textView;
+
 @end
 
 @implementation ViewController
@@ -27,7 +29,13 @@ typedef struct {
     // Do any additional setup after loading the view, typically from a nib.
     [self createAvalue];
     
-    mySwiftObject *swiftObject = @"haha";//
+}
+
+- (void)textKit{
+    
+    [self.textView.textStorage beginEditing];
+//    [self markWord:@"Alice" inTextStorage:self.textView.textStorage];
+    [self.textView.textStorage endEditing];
     
 }
     

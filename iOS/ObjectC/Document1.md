@@ -3,11 +3,11 @@
 
 * [文档](https://developer.apple.com/library/prerelease/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011210)
 
-[命名规则](#命名规则)
-[Values and Collections](#Values and Collections)
-[Working with Protocols](#Working with Protocols)
-[Customizing Existing Classes](#Customizing Existing Classes)
-[Encapsulating Data](#Encapsulating Data)
+[命名规则](#命名规则)  
+[Values and Collections](#Values and Collections)  
+[Working with Protocols](#Working with Protocols)  
+[Customizing Existing Classes](#Customizing Existing Classes)  
+[Encapsulating Data](#Encapsulating Data)  
 
 ## 命名规则
 
@@ -63,7 +63,7 @@
 
   is used to declare methods and properties that are independent of any specific class
 
-```objectC
+```objc
 
   @protocol XYZPieChartViewDataSource
   - (NSUInteger)numberOfSegments;
@@ -91,7 +91,7 @@
 
   Protocols are also useful in situations where the class of an object isn’t known, or needs to stay hidden.
 
-```object
+```objc
 
 id <XYZFrameworkUtility> utility = [frameworkObject anonymousUtility];
 

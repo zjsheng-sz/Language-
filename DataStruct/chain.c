@@ -12,10 +12,10 @@ struct node{
 struct node *add_to_list(struct node *list, int n){
 
 	struct node *new_node;
-	new_node = malloc(sizeof(sttuct node));
-	
+	new_node = malloc(sizeof(struct node));
+
 	if(new_node == NULL){
-	
+
 		Printf("Error: malloc failed in add_to_list");
 		exit(EXIT_FAILURE);
 	}
@@ -24,6 +24,7 @@ struct node *add_to_list(struct node *list, int n){
 
 	return new_node;
 }
+
 //插入N个节点
 struct node *read_numbers(void){
 
@@ -37,7 +38,7 @@ struct node *read_numbers(void){
 			return first;
 		first = add_to_list(first,n);
 	}
-	
+
 }
 
 //搜索
@@ -59,10 +60,10 @@ struct node *delete_from_list(struct node *list, int n){
 	//定位
 	//改变前一个节点，使它"绕过"删除节点
 	//free
-	
+
 	struct node *cur, *prev;
 
-	for(cur = list, prev = NULL; 
+	for(cur = list, prev = NULL;
 			cur != NULL && cur->value != n;
 			prev = cur, cur = cur->next)
 		;
@@ -76,6 +77,8 @@ struct node *delete_from_list(struct node *list, int n){
 		prev->next = cur->next;
 	free(cur);
 
+	cur = NULL;
+
 	return list;
 
 }
@@ -84,7 +87,7 @@ struct node *delete_from_list(struct node *list, int n){
 
 int main(){
 
-	
+
 
 	return 0;
 }

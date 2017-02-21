@@ -8,7 +8,7 @@ int main(){
 	printf("hello World\n");
 
 	sort_insert1();
-
+a
 	return 0;
 }
 
@@ -18,10 +18,69 @@ void printArr(){
 
     for(int i = 0; i < 7; i++){
 
-	printf("%d,",arr[i]);
+	  printf("%d,",arr[i]);
+
     }
 
     printf("\n");
+}
+
+void sort_bubble(int a[], int N) {
+
+	for (int i = 0; i < N - 1; i++) {
+		/* code */
+		for (int j = 0; j < N - 1 - i; j++) {
+			/* code */
+			if (a[j] > a[j + 1]) {
+				/* code */
+				int tmp = a[j];
+				a[j] = a[j+1];
+				a[j+1] = tmp;
+			}
+		}
+	}
+}
+
+
+void sort_select(int a[], int N) {
+
+	for (int i = 0; i < N - 1; i++) {
+
+		for (int j = i; j < N; j++) {
+
+				if (a[i] > a[j]) {
+					int tmp = a[i];
+					a[i] = a[j];
+					a[j] = tmp;
+				}// if
+
+		} // for j
+
+	}// for i
+
+}
+
+
+void name(/* arguments */) {
+	/* code */
+}
+
+void sort_inserts(int a[], N) {
+
+	for (int i = 0; i < N; i++) {
+
+		for (int j = 0; j < count; j++) {
+
+			if (a[i] > a[i+1]) {
+
+
+
+			}
+
+		}
+
+	}
+
 }
 
 void sort_insert1(){
