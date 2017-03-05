@@ -5,11 +5,12 @@
 #define MAX_REMIND 50
 #define MSG_LEN 60
 
+// result = s1+s2;
 char *concat(const char *s1, const char *s2){
 
 	char *result = (char *)malloc(strlen(s1) + strlen(s2) + 1);
 	if(result == NULL){
-	
+
 		printf("Error");
 		exit(EXIT_FAILURE);
 	}
@@ -20,6 +21,7 @@ char *concat(const char *s1, const char *s2){
 
 }
 
+//
 int read_line(char str[], int n){
 
 	char ch;
@@ -34,15 +36,15 @@ int read_line(char str[], int n){
 }
 
 int main(){
-	
+
 	char *reminders[MAX_REMIND];
 	char day_str[3], msg_str[MSG_LEN+1];
 	int day, i, j, num_remind = 0;
 
 	for(;;){
-	
+
 		if(num_remind == MAX_REMIND){
-		
+
 			printf("-- No space left --\n");
 			break;
 		}
@@ -58,7 +60,7 @@ int main(){
 		for(i = 0; i < num_remind; i++)
 			if(strcmp(day_str,reminders[i]) <0 )
 				break;
-		
+
 		for(j = num_remind; j>i; j--)
 			reminders[j] = reminders[j-1];
 
@@ -67,12 +69,12 @@ int main(){
 			printf("-- NO space left --\n");
 			break;
 		}
-		
+
 		strcpy(reminders[i], day_str);
 		strcat(reminders[i], msg_str);
 
 		num_remind++;
-	
+
 	}
 
 	printf("\nDay Reminder\n");
