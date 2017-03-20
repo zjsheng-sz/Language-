@@ -9,31 +9,15 @@
 #import "IPICoreDataManager.h"
 
 @interface IPICoreDataManager ()
-<<<<<<< HEAD
-    
+
 @property (nonatomic,strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic,strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic,strong) NSManagedObjectModel *managedObjectModel;
     
-=======
-
-//@property (nonatomic, strong) NSPersistentContainer *persistentContainer;
-@property (strong)NSString *string;
->>>>>>> 6b9059c7e49dd428f0f047bbd9664d107a2ead41
 
 @end
 
 @implementation IPICoreDataManager
-
-- (NSString *)string{
-
-    return nil;
-}
-
-- (void)setString:(NSString *)string{
-    
-    
-}
 
 
 +(instancetype)shareDBManager{
@@ -134,6 +118,10 @@
 -(NSArray<Users *> *)fetchUserByPredicate:(NSPredicate *)predicate{
     
     NSError *error = nil;
+    NSFetchRequest *fetchRequest = [Users fetchRequest];
+    if (predicate) {
+        fetchRequest.predicate = predicate;
+    }
     NSArray *result = [self.managedObjectContext executeFetchRequest:[Users fetchRequest] error:&error];
     
     if (!result) {

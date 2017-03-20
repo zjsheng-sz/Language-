@@ -210,11 +210,16 @@
 
 #pragma mark --  照相 
 -(void)takePhotoFromiPhone{
-    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+//    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+    UIImagePickerControllerSourceType sourceType =
+    UIImagePickerControllerSourceTypePhotoLibrary;
+    
+//    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+
         UIImagePickerController * picker = [[UIImagePickerController alloc]init];
         picker.delegate = self;
-        picker.allowsEditing = NO;
+        picker.allowsEditing = YES;
         picker.sourceType = sourceType;
         [self presentViewController:picker animated:YES completion:nil];
     }else{
@@ -226,7 +231,10 @@
  *  写入相册
  */
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-    UIImage * image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    UIImage * image = [info objectForKey:UIImagePickerControllerEditedImage];
+    
+    
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
