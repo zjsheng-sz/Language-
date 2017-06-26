@@ -43,16 +43,16 @@ const NSInteger READ_LENGTH = 1024; // 1M
     
     //从项目中获得图片文件, 写入到沙盒, 再从沙盒中取出显示
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"dog" ofType:@"jpg"];
-    NSData *imageData = [self fileHandleReadFromFilePath:path];
-    NSString *imageFilePath = [self.documentPath stringByAppendingPathComponent:@"dog.jpg"];
-    [self createFileWithPath:imageFilePath];
-    [imageData writeToFile:imageFilePath atomically:YES];
-    
-    UIImage *image = [UIImage imageWithContentsOfFile:imageFilePath];
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
-    imgView.frame = CGRectMake(0, 0, image.size.width/3.0, image.size.height/3.0);
-    [self.view addSubview:imgView];
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"dog" ofType:@"jpg"];
+//    NSData *imageData = [self fileHandleReadFromFilePath:path];
+//    NSString *imageFilePath = [self.documentPath stringByAppendingPathComponent:@"dog.jpg"];
+//    [self createFileWithPath:imageFilePath];
+//    [imageData writeToFile:imageFilePath atomically:YES];
+//    
+//    UIImage *image = [UIImage imageWithContentsOfFile:imageFilePath];
+//    UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
+//    imgView.frame = CGRectMake(0, 0, image.size.width/3.0, image.size.height/3.0);
+//    [self.view addSubview:imgView];
     
 }
 
@@ -137,6 +137,7 @@ const NSInteger READ_LENGTH = 1024; // 1M
     }
     
 }
+
 //创建文件
 - (BOOL)createFileWithPath:(NSString *)filePath{
     
@@ -159,7 +160,6 @@ const NSInteger READ_LENGTH = 1024; // 1M
         
         return NO;
     }
-    
 }
 
 //删除文件夹
@@ -192,7 +192,6 @@ const NSInteger READ_LENGTH = 1024; // 1M
         NSLog(@"文件写入失败");
         return NO;
     }
-    
 }
 
 //读文件

@@ -60,6 +60,7 @@
 	imageRect.size = CGSizeMake(64.0, 64.0);
 	
 	// Note: The images are actually drawn upside down because Quartz image drawing expects
+    
 	// the coordinate system to have the origin in the lower-left corner, but a UIView
 	// puts the origin in the upper-left corner. For the sake of brevity (and because
 	// it likely would go unnoticed for the image used) this is not addressed here.

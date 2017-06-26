@@ -15,7 +15,6 @@
 		E13DF82A1E0FF3FE004ECB52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E13DF8281E0FF3FE004ECB52 /* LaunchScreen.storyboard */; };
 		E13DF8351E0FF3FE004ECB52 /* FileManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E13DF8341E0FF3FE004ECB52 /* FileManagerTests.m */; };
 		E13DF8401E0FF3FE004ECB52 /* FileManagerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E13DF83F1E0FF3FE004ECB52 /* FileManagerUITests.m */; };
-		E13DF84E1E100A25004ECB52 /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E13DF84D1E100A25004ECB52 /* dog.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +51,6 @@
 		E13DF83B1E0FF3FE004ECB52 /* FileManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FileManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E13DF83F1E0FF3FE004ECB52 /* FileManagerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileManagerUITests.m; sourceTree = "<group>"; };
 		E13DF8411E0FF3FE004ECB52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E13DF84D1E100A25004ECB52 /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = dog.jpg; path = ../../../../dog.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +101,6 @@
 		E13DF8191E0FF3FE004ECB52 /* FileManager */ = {
 			isa = PBXGroup;
 			children = (
-				E13DF84D1E100A25004ECB52 /* dog.jpg */,
 				E13DF81D1E0FF3FE004ECB52 /* AppDelegate.h */,
 				E13DF81E1E0FF3FE004ECB52 /* AppDelegate.m */,
 				E13DF8201E0FF3FE004ECB52 /* ViewController.h */,
@@ -252,7 +249,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E13DF84E1E100A25004ECB52 /* dog.jpg in Resources */,
 				E13DF82A1E0FF3FE004ECB52 /* LaunchScreen.storyboard in Resources */,
 				E13DF8271E0FF3FE004ECB52 /* Assets.xcassets in Resources */,
 				E13DF8251E0FF3FE004ECB52 /* Main.storyboard in Resources */,
@@ -518,6 +514,7 @@
 				E13DF8461E0FF3FE004ECB52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E13DF8471E0FF3FE004ECB52 /* Build configuration list for PBXNativeTarget "FileManagerTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +523,7 @@
 				E13DF8491E0FF3FE004ECB52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E13DF84A1E0FF3FE004ECB52 /* Build configuration list for PBXNativeTarget "FileManagerUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +532,7 @@
 				E13DF84C1E0FF3FE004ECB52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
