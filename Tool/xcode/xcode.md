@@ -17,10 +17,11 @@ Xcode中常用的快捷键操作
  command + [
  command + ]
  command + /
+ command + option + / 注释
  * command + option + ← 或 →
 '文件切换'
  command + ~
- * command + control + ← 或 → 或 ↑ 或 ↓ 
+ * command + control + ← 或 → 或 ↑ 或 ↓
 '文件操作'
  command + O
  command + S

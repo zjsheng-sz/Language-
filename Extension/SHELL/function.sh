@@ -6,14 +6,6 @@ demoFun() {
 	echo "this is my first Shell function!"
 }
 
-echo "---- function start ----"
-
-demoFun
-
-echo "---- function end ----"
-
-#return
-
 funWithReturn() {
 
 	echo "输入第一个数字："
@@ -26,10 +18,13 @@ funWithReturn() {
 	return $(($aNum + $anotherNum))
 }
 
+
+echo "---- function start ----"
+
+demoFun
+
+echo "---- function end ----"
+
 funWithReturn
+
 echo "输入的两个数字之和为 $? "
-
-#函数参数
-#略
-
-

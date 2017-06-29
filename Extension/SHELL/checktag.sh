@@ -24,6 +24,7 @@ if [ ! $# -eq 1 ];then
         usage
         exit $FALSE
 fi
+
 version=$(read_version)
 echo "target version : $TARGET_VERSION"
 echo "current version : $version"

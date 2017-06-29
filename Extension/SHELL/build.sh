@@ -1,211 +1,172 @@
-#!/bin/bash
+#!/bin/sh
 
-echo "svn up....."
-#svn up 
+echo "~~~~~~~~~~~~~~~~开始执行脚本~~~~~~~~~~~~~~~~"
+cd ..
 
-#export BUILD_NUMBER="V03.06.02"
-#echo "android Vision:$BUILD_NUMBER"
+# 开始时间
+beginTime=`date +%s`
+DATE=`date '+%Y-%m-%d-%T'`
+#APP_NAME
+APP_NAME="MobVDT"
+#需要编译的 targetName
+TARGET_NAME_DEVELOP="MobVDT"
+TARGET_NAME_INTERPRISE="MobVDT_Enterprie"
+TARGET_NAME_ADHOC="MobVDT_Adhoc"
+TARGET_NAME_APPSTORE="MobVDT_AppStore"
+TARGET_NAME=$TARGET_NAME_INTERPRISE
 
-PRO=`basename $PWD`
-#echo "PRO=$PRO"
-case "$PRO" in
-		My905|my905|MY905)
-			PRO=my905	
-			SEC_PRODUCT=my905			
-			;;			
-		My908|my908|MY908)
-			PRO=my908
-			SEC_PRODUCT=my908v11	
-			;;
-		MS908_BSRO)
-			PRO=MS908_BSRO
-			SEC_PRODUCT=MS908_BSRO	
-			;;	
-		My908_CV|my908_CV|My908_cv|my908_cv|MY908_CV)
-			PRO=my908_cv
-			SEC_PRODUCT=my908v11_cv	
-			;;
-		My908_MXC|my908_MXC|My908_MXC|my908_MXC|MY908_MXC)
-			PRO=my908_MXC
-			SEC_PRODUCT=my908v11_MXC
-			;;
-		*)
-			PRO=unknow			
-esac
+#编译模式 工程默认有 Debug Release
+CONFIGURATION_TARGET=Release
+#编译路径
+BUILDPATH="Build/${APP_NAME}"
+#archivePath
+ARCHIVEPATH=${BUILDPATH}/${APP_NAME}.xcarchive
+#证书名
+CODE_SIGN_IDENTITY_ENTPRISE="iPhone Distribution: Autel Intelligent Technology Corp., Ltd."
+CODE_SIGN_IDENTITY_PRODUCTION="iPhone Distribution: Autel Intelligent Technology Co., Ltd."
+CODE_SIGN_IDENTITY=$CODE_SIGN_IDENTITY_ENTPRISE
+#描述文件
+PROVISIONING_PROFILE_NAME_ENTPRISE="441df4f5-9a1a-4d78-a473-43be886ff27f"
+PROVISIONING_PROFILE_NAME_ADHOC="2a6b7ebc-543c-4d9d-8e59-f953aab625cb"
+PROVISIONING_PROFILE_NAME_APPSTORE="0fc94984-52fb-4e09-bd48-57e7948691f6"
+PROVISIONING_PROFILE_NAME=$PROVISIONING_PROFILE_NAME_ENTPRISE
+#苹果账号
+AppleID="Diagnostic@auteltech.net"
+AppleIDPWD="Diagnostic321"
+#导出ipa 所需plist
+ADHOCExportOptionsPlist="./Build/ADHOCExportOptionsPlist.plist"
+AppStoreExportOptionsPlist="./Build/AppStoreExportOptionsPlist.plist"
+ENTPRISEExportOptionsPlist="./Build/ENTPRISEExportOptionsPlist.plist"
+ExportOptionsPlist=${ENTPRISEExportOptionsPlist}
+# 是否上传蒲公英
+UPLOADPGYER=false
+# 是否上传AppStore
+UPLOADAPPSTore=false
 
-
-if [ $PRO = "unknow" ]  
+# 读取用户输入并存到变量里
+method="$1"
+# 判读用户是否有输入
+if [ -n "$method" ]
 then
-	echo '1.My905 user'
-	echo '2.My908 user'
-	echo '3.MS908_BSRO user'
-	echo '4.My908 CV user'
-	echo '5.My908 MXC user'
-	echo "you had not select PRODUCT,please select product num to starting make SDK"
-	
-	while read -p "Input Num to select :" NUM
-	do
-	if ((("$NUM" >= 1))&&(("$NUM" <= 5)))
-		then
-		echo "num:$NUM"
-	  break
-	else
-		echo "please input the num shall be 1 to 3!!!!!"	
-	fi	
-	done
-	
-	case "$NUM" in
-			1)
-				PRO=my905	
-				SEC_PRODUCT=my905		
-				;;			
-			2)
-				PRO=my908
-				SEC_PRODUCT=my908v11	
-				;;
-			3)
-				PRO=MS908_BSRO
-				SEC_PRODUCT=MS908_BSRO	
-				;;	
-			4)
-			PRO=my908_cv
-			SEC_PRODUCT=my908v11_cv	
-				;;		
-			5)
-			PRO=my908_MXC
-			SEC_PRODUCT=my908v11_MXC	
-				;;			
-	esac
-fi
+    if [ "$method" = "enterprise" ]
+    then
+    PROVISIONING_PROFILE_NAME=${PROVISIONING_PROFILE_NAME_ENTPRISE}
+    CODE_SIGN_IDENTITY=${CODE_SIGN_IDENTITY_ENTPRISE}
+    ExportOptionsPlist=${ENTPRISEExportOptionsPlist}
+    TARGET_NAME=$TARGET_NAME_INTERPRISE
+    elif [ "$method" = "ad-hoc" ]
+    then
+    PROVISIONING_PROFILE_NAME=$PROVISIONING_PROFILE_NAME_ADHOC
+    CODE_SIGN_IDENTITY=${CODE_SIGN_IDENTITY_PRODUCTION}
+    ExportOptionsPlist=${ADHOCExportOptionsPlist}
+    TARGET_NAME=$TARGET_NAME_ADHOC
+  elif [ "$method" = "appstore" ]
+    then
+    UPLOADAPPSTore=true
+    PROVISIONING_PROFILE_NAME=$PROVISIONING_PROFILE_NAME_APPSTORE
+    CODE_SIGN_IDENTITY=${CODE_SIGN_IDENTITY_PRODUCTION}
+    ExportOptionsPlist=${AppStoreExportOptionsPlist}
+    TARGET_NAME=$TARGET_NAME_APPSTORE
 
-echo "PRO = $PRO"
-
-source "./version_$PRO.sh"
-export JAVA_HOME=/opt/jdk1.6.0
-export CLASSPATH=$JAVA_HOME/lib/:$JAVA_HOME/jre/lib/
-export PATH=/opt/arm-2010q1/bin/:$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
-
-export BUILD_NUMBER="$BUILD_NUMBER"
-echo "android Vision:'$BUILD_NUMBER'"
-
-
-case "$1" in
-	clean)
-		CLEAN=clean
-		echo "yes $CLEAN"		
-	;; 
-	"")
-		MYFILE=".pro.txt"
-		LASTPRO=$(cat $MYFILE)
-		echo "LASTPRO=$LASTPRO"		
-		if [ ! -f "$MYFILE" ]; then
-			CLEAN=clean
-			echo "Fist make SDK ,yes project shell $CLEAN "	
-			echo "$PRO"	> $MYFILE
-		else
-			if [ "$PRO" != "$LASTPRO" ]; then
-				CLEAN=clean
-				echo "The last pro is not this one ,yes project shell $CLEAN"
-				echo "$PRO"	> $MYFILE
-			else			
-				echo "no ,project not need clean"
-			fi	
-		fi 		
-		;;
-		
-			not_clean)
-		MYFILE=".pro.txt"
-		LASTPRO=$(cat $MYFILE)
-		echo "LASTPRO=$LASTPRO"		
-		if [ ! -f "$MYFILE" ]; then
-			CLEAN=clean
-			echo "Fist make SDK ,yes project shell $CLEAN "	
-			echo "$PRO"	> $MYFILE
-		else
-			if [ "$PRO" != "$LASTPRO" ]; then
-				CLEAN=clean
-				echo "The last pro is not this one ,yes project shell $CLEAN"
-				echo "$PRO"	> $MYFILE
-			else			
-				echo "no ,project not need clean"
-			fi	
-		fi 		
-		;;
-	*)
-		echo "you args invalid, verify please!!!!!"
-		exit 0
-		;;
-esac
-
-
-function check_exit()
-{
-	if [ $? != 0 ]
-	then
-		#echo "$2"	
-		#echo "==========$?"
-		exit 1
-	fi
-}
-
-echo '[[[[[[[ Make image for u-boot ]]]]]]]'
-cd ./uboot/trunk/
-echo "$PWD"
-echo "./build$PRO.sh"
-./build$PRO.sh $CLEAN
-check_exit
-cd -
-
-echo '[[[[[[[ Make image for kernel ]]]]]]]'
-cd ./kernel/trunk/
-echo "$PWD"
-echo "./build$PRO.sh"
-./build$PRO.sh $CLEAN
-check_exit
-cd -
-
-echo '[[[[[[[ Make image for android ]]]]]]]'
-cd ./android/trunk/
-echo "$PWD"
-#my908_group_burn_files.sh
-echo "./group_burn_files_$PRO.sh"
-source build/envsetup.sh  
-echo "=========SEC_PRODUCT=$SEC_PRODUCT========="
-if [ "$SEC_PRODUCT" = "my908v11_MXC" ]
-then
-	echo "TARGET_PRODUCT=$SEC_PRODUCT"
-	export TARGET_PRODUCT=$SEC_PRODUCT
+    else
+    echo "~~~~~~~~~~~~~~~~请输入正确的打包方式~~~~~~~~~~~~~~~~"
+    echo "        1 enterprise(默认)"
+    echo "        2 ad-hoc"
+    echo "        3 appstore "
+    exit 1
+    fi
 else
-	export TARGET_PRODUCT=autel_$SEC_PRODUCT
-fi	
-
-export TARGET_BUILD_VARIANT=user
-echo "==+====./group_burn_files_$PRO.sh===+==="
-./group_burn_files_$PRO.sh $CLEAN
-make otapackage
-check_exit
-cd -
-
-MYDATE=`date +%Y%m%d`
-FOLDER_NAME=$MYDATE-$BUILD_NUMBER-$SEC_PRODUCT
-if [ ! -d "$FOLDER_NAME" ]; then
-mkdir $FOLDER_NAME
+    ExportOptionsPlist=${ENTPRISEExportOptionsPlist}
 fi
-cd $FOLDER_NAME
-if [ ! -d "autel_factory" ]; then
-mkdir autel_factory
-fi
-cd -
 
 
-cp .amend_$PRO.txt $FOLDER_NAME/autel_factory/$FOLDER_NAME.txt
-cp scp_4412_$PRO/* $FOLDER_NAME/autel_factory/
-if [ "$SEC_PRODUCT" = "my908v11_MXC" ]
+# info.plist路径
+PROJECT_INFOPLIST_PATH="./${APP_NAME}/${APP_NAME}.plist"
+#取版本号
+BUNDLESHORTVERSION=$(/usr/libexec/PlistBuddy -c "print CFBundleShortVersionString" "${PROJECT_INFOPLIST_PATH}")
+#取build值
+BUNDLEVERSION=$(/usr/libexec/PlistBuddy -c "print CFBundleVersion" "${PROJECT_INFOPLIST_PATH}")
+#输出的ipa目录
+IPAPATH="Build/version/${BUNDLESHORTVERSION}"
+
+echo "~~~~~~~~~~~~~~~~开始编译~~~~~~~~~~~~~~~~~~~"
+echo "~~~~~~~~~~~~~~~~开始清理~~~~~~~~~~~~~~~~~~~"
+
+rm -r
+
+# 清理 避免出现一些莫名的错误
+# xcodebuild clean -workspace ${TARGET_NAME}.xcworkspace \
+# -configuration \
+# ${CONFIGURATION} -alltargets
+xcodebuild -target "${TARGET_NAME}"  -configuration 'Release' clean
+
+echo "+++++++++++++++++build+++++++++++++++++"
+xcodebuild -target "${APP_NAME}" -sdk iphoneos \
+-configuration 'Release' \
+CODE_SIGN_IDENTITY="${CODE_SIGN_IDENTITY}" \
+PROVISIONING_PROFILE="${PROVISIONING_PROFILE_NAME}"
+
+
+echo "~~~~~~~~~~~~~~~~开始构建~~~~~~~~~~~~~~~~~~~"
+#开始构建
+xcodebuild archive -project ${APP_NAME}.xcodeproj \
+-scheme ${TARGET_NAME} \
+-archivePath ${ARCHIVEPATH} \
+-configuration ${CONFIGURATION_TARGET} \
+CODE_SIGN_IDENTITY="${CODE_SIGN_IDENTITY}" \
+PROVISIONING_PROFILE="${PROVISIONING_PROFILE_NAME}"
+
+echo "~~~~~~~~~~~~~~~~检查是否构建成功~~~~~~~~~~~~~~~~~~~"
+# xcarchive 实际是一个文件夹不是一个文件所以使用 -d 判断
+if [ -d "$ARCHIVEPATH" ]
 then
-cp android/trunk/out/target/product/$SEC_PRODUCT/$SEC_PRODUCT-ota-$BUILD_NUMBER.zip $FOLDER_NAME/$SEC_PRODUCT-ota-$BUILD_NUMBER-$MYDATE.zip
+echo "构建成功......"
 else
-cp android/trunk/out/target/product/$SEC_PRODUCT/autel_$SEC_PRODUCT-ota-$BUILD_NUMBER.zip $FOLDER_NAME/autel_$SEC_PRODUCT-ota-$BUILD_NUMBER-$MYDATE.zip
+echo "构建失败......"
+rm -rf $BUILDPATH
+exit 1
 fi
-echo "[[[[[[[ imgs ok success in scp_4412_$PRO ]]]]]]]"
-echo 
+endTime=`date +%s`
+ArchiveTime="构建时间$[ endTime - beginTime ]秒"
+
+
+echo "~~~~~~~~~~~~~~~~导出ipa~~~~~~~~~~~~~~~~~~~"
+
+beginTime=`date +%s`
+
+xcodebuild -exportArchive \
+-archivePath ${ARCHIVEPATH} \
+-exportOptionsPlist ${ExportOptionsPlist} \
+-exportPath ${IPAPATH}
+
+echo "~~~~~~~~~~~~~~~~检查是否成功导出ipa~~~~~~~~~~~~~~~~~~~"
+IPAFILEPATH=${IPAPATH}/${TARGET_NAME}.ipa
+if [ -f "$IPAFILEPATH" ]
+then
+echo "导出ipa成功......"
+echo "BUILD_NUMBER=V${BUNDLESHORTVERSION}" > Build/version.sh
+echo "版本号V${BUNDLESHORTVERSION}写入Build/version.sh成功"
+mv $IPAFILEPATH ${IPAPATH}/"${TARGET_NAME}_${BUNDLESHORTVERSION}.ipa"
+else
+echo "导出ipa失败......"
+# 结束时间
+endTime=`date +%s`
+echo "$ArchiveTime"
+echo "导出ipa时间$[ endTime - beginTime ]秒"
+exit 1
+fi
+
+endTime=`date +%s`
+ExportTime="导出ipa时间$[ endTime - beginTime ]秒"
+
+#
+# echo "~~~~~~~~~~~~~~~~配置信息~~~~~~~~~~~~~~~~~~~"
+# echo "开始执行脚本时间: ${DATE}"
+# echo "编译模式: ${CONFIGURATION_TARGET}"
+# echo "导出ipa配置: ${ExportOptionsPlist}"
+# echo "打包文件路径: ${ARCHIVEPATH}"
+# echo "导出ipa路径: ${IPAPATH}"
+
+# echo "$ArchiveTime"
+# echo "$ExportTime"
 exit 0
