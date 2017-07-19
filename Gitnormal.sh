@@ -1,11 +1,18 @@
 
 echo "第一个参数为:$1";
+echo "第二个参数为:$2";
 
-cd /Users/autel/Desktop/Language-/
+Path=$1
+Push=$2
 
-git add .;
-git commit -m"updata";
 
-if [[ $1 == push ]]; then
+echo $Path
+
+cd $Path
+
+git add .
+git commit -m"updata"
+
+if [[ $Push == push ]]; then
   git push origin master; #push to github
 fi

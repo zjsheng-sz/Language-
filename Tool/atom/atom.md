@@ -7,4 +7,8 @@ $apm install git-plus
 ```
 
 
-### atom 中使用git
+### git-control
+
+类似于sourceTree的
+
+Ctrl + Alt + O
