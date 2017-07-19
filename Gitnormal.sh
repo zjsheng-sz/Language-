@@ -5,7 +5,6 @@ echo "第二个参数为:$2";
 Path=$1
 Push=$2
 
-
 echo $Path
 
 cd $Path
