@@ -28,12 +28,12 @@
 
 拷贝本地公钥到服务器的 ~/git/.ssh/authorized_keys
 
-        $ ssh git@localhost "mkdir ~/.ssh"
-        $ scp ~/.ssh/id_rsa.pub git@localhost:~/.ssh/id_rsa.pub.back
+        $ ssh git@10.240.4.93 "mkdir ~/.ssh"
+
+        $ scp ~/.ssh/id_rsa.pub  git@10.240.4.93:~/.ssh/id_rsa.pub.back
         $ ssh git@localhost "cat ~/.ssh/id_rsa.pub.back >> ~/.ssh/authorized_keys"
 
 ### 使用
-
 
         $ git clone ssh://git@localhost/git/test.git
         $ git remote add ssh ssh://git@localhost/git/test.git
